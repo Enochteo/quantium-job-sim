@@ -2,27 +2,22 @@ from dash import Dash, dcc, html
 import pandas as pd
 import plotly.express as px
 
-
-df = pd.read_csv('https://gist.githubusercontent.com/chriddyp/c78bf172206ce24f77d6363a2d754b59/raw/c353e8ef842413cae56ae3920b8fd78468aa4cb2/usa-agricultural-exports-2011.csv')
-
-def generate_table(dataframe, max_rows=10):
-    return html.Table([
-        html.Thead(
-            html.Tr([html.Th(col) for col in dataframe.columns])
-        ),
-        html.Tbody([
-            html.Tr([
-                html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-            ]) for i in range(min(len(dataframe), max_rows))
-        ])
-    ])
-
 app = Dash()
+df = pd.read_csv('./valuable-data.csv')
 
-app.layout = html.Div([
-    html.H4(children='US Agricultural Exports (2011)'),
-    generate_table(df)
-])
+fig = px.line(df, x="date", y="sales", title="Pink Morsel Sales Over Time", labels={"date": "Date", "sales": "Sales in USD ($)"})
+app.layout = html.Div(
+    [html.H1('Pink Morsel Sales Visualizer'),
 
+    html.P(
+        ['A dashboard to visualize the trend in sales of Pink Morsel over time. ',
+        'Use this chart to assess whether sales were higher before or after the price change.']
+           ),
+    dcc.Graph(
+        id='sales-graph',
+        figure=fig
+    )]
+
+)
 if __name__ == '__main__':
     app.run(debug=True)
