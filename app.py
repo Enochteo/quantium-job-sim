@@ -1,23 +1,45 @@
-from dash import Dash, dcc, html
+from dash import Dash, dcc, html, Input, Output, callback
 import pandas as pd
 import plotly.express as px
 
 app = Dash()
 df = pd.read_csv('./valuable-data.csv')
 
-fig = px.line(df, x="date", y="sales", title="Pink Morsel Sales Over Time", labels={"date": "Date", "sales": "Sales in USD ($)"})
 app.layout = html.Div(
-    [html.H1('Pink Morsel Sales Visualizer'),
+    [html.H1('Pink Morsel Sales Visualizer', style={
+        'textAlign': 'center',
+        'color': '#2E86C1',
+        'font-family': 'Arial'
+    }),
 
     html.P(
         ['A dashboard to visualize the trend in sales of Pink Morsel over time. ',
         'Use this chart to assess whether sales were higher before or after the price change.']
            ),
     dcc.Graph(
-        id='sales-graph',
-        figure=fig
+        id='sales-graph'
+    ),
+    dcc.RadioItems(
+        id='regions',
+        options=[
+            'north', 'east', 'south', 'west', 'all'
+        ],
+        value='all',
+        inline=True,
     )]
-
 )
+
+@callback(
+    Output('sales-graph', 'figure'),
+    Input('regions', 'value')
+)
+def update_graph(regions):
+    updated_df = df[df['region'] == regions]
+    if regions != 'all':
+        fig = px.line(updated_df, x="date", y="sales", title="Pink Morsel Sales Over Time", labels={"date": "Date", "sales": "Sales in USD ($)"})
+    else:
+        fig = px.line(df, x="date", y="sales", title="Pink Morsel Sales Over Time", labels={"date": "Date", "sales": "Sales in USD ($)"})
+    return fig
+
 if __name__ == '__main__':
     app.run(debug=True)
