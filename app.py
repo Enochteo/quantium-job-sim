@@ -15,9 +15,18 @@ app.layout = html.Div(
     html.P(
         ['A dashboard to visualize the trend in sales of Pink Morsel over time. ',
         'Use this chart to assess whether sales were higher before or after the price change.']
-           ),
+           , style={
+               'textAlign': 'center',
+               'fontSize': '18px',
+               'marginBottom': '20px'
+           }),
     dcc.Graph(
-        id='sales-graph'
+        id='sales-graph',
+        style={
+            'border': '2px solid #ccc',
+            'padding': '10px',
+            'backgroundColor': '#f9f9f9'
+        }
     ),
     dcc.RadioItems(
         id='regions',
@@ -26,7 +35,14 @@ app.layout = html.Div(
         ],
         value='all',
         inline=True,
-    )]
+        style={
+            'display': 'flex',
+            'justifyContent': 'center',
+            'gap': '15px',
+            'marginBottom': '30px'
+        }
+    )],
+style={'maxWidth': '800px', 'margin': '0 auto'}
 )
 
 @callback(
