@@ -27,14 +27,23 @@ Data Validation: Python
 ![demo_1](demo1.png) ![demo_2](demo2.png)
 
 ## Project Structure
+
 ```bash
 .
-├── app.py                 # Main Dash application
-├── tests/                 # Pytest test suite
-├── run_tests.sh           # Bash script to run tests
-├── requirements.txt       # Project dependencies
-├── README.md              # Project documentation
-└── data/                  # Sample datasets
+├── README.md           # Project documentation
+├── app.py              # Main Dash application
+├── data                # Datasets
+│   ├── daily_sales_data_0.csv
+│   ├── daily_sales_data_1.csv
+│   └── daily_sales_data_2.csv
+├── data-script.py
+├── demo1.png
+├── demo2.png
+├── requirements.txt      # Project dependencies
+├── run.sh
+├── tasks.sh              # Bash script to run tests
+├── test_app.py            # Pytest test suite
+└── valuable-data.csv
 ```
 
 **Expected Impacts**
