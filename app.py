@@ -13,7 +13,7 @@ def create_app(df):
         }),
 
         html.P(
-            ['A dashboard to visualize the trend in sales of Pink Morsel over time. ',
+            ['A dashboard to visualize the trends in sales of Pink Morsel over time. ',
             'Use this chart to assess whether sales were higher before or after the price change.']
             , style={
                 'textAlign': 'center',
