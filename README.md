@@ -1,5 +1,5 @@
 ## Interactive Pricing Strategy & Sales Analysis Tool
-An interactive Dash web application built during the Quantium Software Engineering Job Simulation (Forage). This tool allows stakeholders to model price changes and instantly visualize their impact on sales and profitability, enabling faster, data-driven pricing decisions.
+An interactive Dash web application built during the Quantium Software Engineering Job Simulation (Forage). This tool allows stakeholders to model price changes and instantly visualize their impact on sales and profitability, enabling faster, data-driven pricing decisions
 
 **Features**
 Scenario Simulation: Adjust price parameters to instantly see the effect on sales and profit.
